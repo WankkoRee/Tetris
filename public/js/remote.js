@@ -35,7 +35,7 @@ var Remote = function (socket) {
       game.setTime(data)
     })
     socket.on('lose', function (data) {
-      game.gameover(false)
+      game.gameover(false, 'rival')
     })
     socket.on('addTailLines', function (data) {
       game.addTailLines(data)

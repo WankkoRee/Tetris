@@ -255,11 +255,17 @@ var Game = function () {
   }
 
   // 游戏结束
-  var gameover = function (win) {
+  var gameover = function (win, role) {
     if(win) {
-      resultDiv.innerHTML = '你赢了'
+      if (role === 'self')
+        resultDiv.innerHTML = '你赢了'
+      else if (role === 'rival')
+        resultDiv.innerHTML = 'Ta赢了'
     }else {
-      resultDiv.innerHTML = '你输了'
+      if (role === 'self')
+        resultDiv.innerHTML = '你输了'
+      else if (role === 'rival')
+        resultDiv.innerHTML = 'Ta输了'
     }
   }
 

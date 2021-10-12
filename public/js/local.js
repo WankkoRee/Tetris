@@ -52,8 +52,8 @@ var Local = function (socket) {
       }
       var gameOver = game.checkGameOver()
       if(gameOver) {
-        game.gameover(false)
-        document.getElementById('remote_gameover').innerHTML = "你赢了"
+        game.gameover(false, 'self')  // 自己输了
+        document.getElementById('remote_gameover').innerHTML = "Ta赢了"
         socket.emit('lose')
         stop()
       }else {
@@ -138,7 +138,7 @@ var Local = function (socket) {
     start()
   })
   socket.on('lose', function () {
-    game.gameover(true)
+    game.gameover(true, 'self')
     stop()
   })
   socket.on('leave', function () {
