@@ -19,7 +19,7 @@ app.get(/^\/(.*)$/, function(req, res) {
 
 var bindListener = function(socket, event) {
   socket.on(event, function (data) {
-    if(socket.clientNum % 2 == 0){
+    if(socket.clientNum % 2 === 0){
       if(socketMap[socket.clientNum - 1]) {
         socketMap[socket.clientNum - 1].emit(event, data)
       }
@@ -39,8 +39,8 @@ io.on('connection', function (socket) {
 
   socketMap[clientCount] = socket
 
-  if(clientCount % 2 ==1){
-    socket.emit('waiting', 'waiting for another person')
+  if(clientCount % 2 === 1){
+    socket.emit('waiting', '对面没人呐，找个人一起联机吧')
   } else {
     if(socketMap[(clientCount - 1)]) {
       socket.emit('start')
@@ -66,7 +66,7 @@ io.on('connection', function (socket) {
 
 
   socket.on('disconnect', function () {
-    if(socket.clientNum % 2 == 0){
+    if(socket.clientNum % 2 === 0){
       if(socketMap[socket.clientNum - 1]) {
         socketMap[socket.clientNum - 1].emit('leave')
       }
