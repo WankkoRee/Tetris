@@ -1,5 +1,7 @@
-var app = require('http').createServer()
-var io = require('socket.io')(app)
+const express = require('express')
+const app = express()
+var server = require('http').createServer(app)
+var io = require('socket.io')(server)
 
 var PORT = 3000
 
@@ -9,7 +11,11 @@ var clientCount = 0
 // 用来存储客户端socket
 var socketMap = {}
 
-app.listen(PORT)
+server.listen(PORT)
+
+app.get(/^\/(.*)$/, function(req, res) {
+  res.sendFile('public/'+req.params[0], {root: __dirname })
+});
 
 var bindListener = function(socket, event) {
   socket.on(event, function (data) {
