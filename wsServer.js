@@ -14,7 +14,7 @@ var socketMap = {}
 server.listen(PORT)
 
 app.get(/^\/(.*)$/, function(req, res) {
-  res.sendFile('public/'+req.params[0], {root: __dirname })
+  res.sendFile(req.params[0]?req.params[0]:'index.html', {root: __dirname+'/public' })
 });
 
 var bindListener = function(socket, event) {
