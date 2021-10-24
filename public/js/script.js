@@ -1,4 +1,4 @@
-var socket = io('ws://localhost:3000')
+var socket = io('ws://'+location.host)
 
 var local = new Local(socket)
 
